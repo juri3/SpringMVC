@@ -1,16 +1,17 @@
 package dao;
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import model.Follow;
 import model.Member;
 import mybatis.AbstractRepository;
 
 public class MybatisMemberDao extends AbstractRepository
 {
-    private final String namespace = "mybatis.Member";
+    private final String namespace = "dao.MemberMapper";
 
     private static MybatisMemberDao instance = new MybatisMemberDao();
     
@@ -82,7 +83,7 @@ public class MybatisMemberDao extends AbstractRepository
 		return profileList;
 	}
 	
-	public Member getMember(String memNum){
+	public Member getMember(int memNum){
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		Member member=null;
 		
@@ -115,5 +116,85 @@ public class MybatisMemberDao extends AbstractRepository
 			sqlSession.close();
 		}
 		return x;
+	}
+	
+	public void insertFollow(Follow follow){
+		 SqlSession sqlSession = getSqlSessionFactory().openSession();	   
+		 
+	        try
+	        {
+	            String statement = namespace + ".insertFollow";
+	            sqlSession.insert(statement, follow);
+	            sqlSession.commit();
+	        }
+	        finally
+	        {
+	            sqlSession.close();
+	        }
+	}
+	
+	public int checkFollow(int loginNum, int memNum){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();	  		
+		int checkFollow=-1;		
+		
+		Map map=new HashMap();
+		map.put("memNum", loginNum);
+		map.put("followNum", memNum);
+		
+	        try
+	        {
+	            String statement = namespace + ".checkFollow";
+	            checkFollow=sqlSession.selectOne(statement, map);
+	        }
+	        finally
+	        {
+	            sqlSession.close();
+	        }
+	        return checkFollow;
+	}
+	
+	public void deleteFollow(Follow follow){
+		 SqlSession sqlSession = getSqlSessionFactory().openSession();	   
+		 
+	        try
+	        {
+	            String statement = namespace + ".deleteFollow";
+	            sqlSession.delete(statement, follow);
+	            sqlSession.commit();
+	        }
+	        finally
+	        {
+	            sqlSession.close();
+	        }
+	}
+	
+	public int followCount(int memNum){
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		int count;
+		
+		try{
+			String statement=namespace+".followCount"; 
+			count=sqlSession.selectOne(statement, memNum);
+		}finally{
+			sqlSession.close();
+		}
+
+		return count;
+	}
+	
+	public List<Member> followList(int memNum){
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		List<Member> followList=null;
+		String statement;
+		System.out.println(memNum);
+		try{
+			statement=namespace+".getFollow";         
+			followList=sqlSession.selectList(statement, memNum);
+			System.out.println(followList);
+		}finally{
+			sqlSession.close();
+		}
+
+		return followList;
 	}
 }

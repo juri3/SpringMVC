@@ -94,6 +94,34 @@ ol, ul {
 	color: #3b3b3b; 
 	border-bottom: 3px solid #ff6d00;
 }
+.itemcard-list {
+	display: table;
+	width: auto;
+	min-width: 100%;
+	margin-left: -26px;
+	overflow: auto;
+	margin-bottom: -85px;
+}
+
+.itemcard-list-item {
+	position: relative;
+	width: 80px;
+	padding-right: 26px;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+	float: none;
+	vertical-align: top;
+	display: inline-block;
+	word-break: break-all;
+}
+.item img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 30px;
+    left: 30px;
+}
 </style>
 
 <body>
@@ -103,20 +131,28 @@ ol, ul {
 		<div class="inner">
 			<img src="<%=request.getContextPath()%>/uploadFile/${member.profile}">
 			<strong>${member.name}</strong>
-			<span>0명 팔로잉</span>
+			<span>팔로워 0명</span>
 			<p class="dsc">
 				<br><br>
 				<strong>${member.selfIntroduction}</strong>
 				<br>
 			</p>
 			<div class="btn_area">
-				<c:if test="${session==member.memNum}">
+				<c:if test="${loginNum==member.memNum}">
 				<button onclick="javascript:window:location='<%=request.getContextPath()%>/member/modifyForm?memNum=${member.memNum}'">
 				프로필 수정
 				</button>
 				</c:if>
-				<c:if test="${session!=member.memNum}">
-				<button onclick="javascript:window:location='<%=request.getContextPath()%>/member/follow?memNum=${member.memNum}'">팔로우</button>
+				<c:if test="${loginNum!=member.memNum}">
+					<c:if test="${checkFollow==0}">
+					<button onclick="javascript:window:location='<%=request.getContextPath()%>/member/follow?memNum=${member.memNum}'">팔로우</button>
+					</c:if>
+				</c:if>
+				<c:if test="${loginNum!=member.memNum}">
+					<c:if test="${checkFollow==1}">
+					팔로우중<br>
+					<button onclick="javascript:window:location='<%=request.getContextPath()%>/member/unFollow?memNum=${member.memNum}'">언팔로우</button>
+					</c:if>
 				</c:if>
 			</div>
 		</div>
@@ -127,21 +163,43 @@ ol, ul {
 		<ul class = "tab-list">
 			<li class = "active" onclick = "openTitle('myRecipe')"><a href = "#">마이레시피</a></li>
 			<li onclick = "openTitle('scrap')"><a href = "#">스크랩</a></li>
-			<li onclick = "openTitle('following')"><a href = "#">팔로잉</a></li>
+			<li onclick = "openTitle('follow')"><a href = "#">팔로우(${followCount})</a></li>
 		</ul>
 		</div>
 	</div>
 	
-	<div class="title" id = "myRecipe" style="width: 1024px; margin: 0px 200px;">
+	<div class="title" id = "myRecipe" style="margin: 0px 200px;">
 		myRecipe
 	</div>
 	
-	<div class="title" id = "scrap" style = "display:none; width: 1024px; margin: 0px 200px;">
+	<div class="title" id = "scrap" style = "display:none; margin: 0px 200px;">
 		scrap
 	</div>
 	
-	<div class="title" id = "following" style = "display:none; width: 1024px; margin: 0px 200px;">
-		following
+	<div class="title" id = "follow" style = "display:none; margin: 0px 200px;">
+		<ul class="itemcard-list">
+			<c:if test="${followCount==0 }">
+				<h1 style="text-align: center;color: #b7b7b7;font-size: 20px;padding-top: 100px">아직 팔로우 하신 유저가 없습니다.</h1>
+			</c:if>
+			<c:if test="${followCount != 0 }">
+
+				<c:forEach var="followList" items="${followList}">
+
+					<li class="itemcard-list-item">
+						<div class="item">
+						<a href="<%=request.getContextPath()%>/member/mypage?memNum=${followList.memNum}">
+							<div>
+								<img src="<%=request.getContextPath()%>/uploadFile/${followList.profile}">
+							</div>
+							<div>
+								<div>${followList.name}</div>
+							</div>
+						</a>
+						</div>
+					</li>
+				</c:forEach>
+			</c:if>
+		</ul>
 	</div>
 	
 	

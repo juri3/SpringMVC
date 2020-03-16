@@ -6,6 +6,7 @@
 	<typeAliases>							<!-- resultType -->
 		<typeAlias type="model.RcpDataBean" alias="Rcp"/>
 		<typeAlias type="model.Member" alias="Member" />
+		<typeAlias type="model.Follow" alias="Follow" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
