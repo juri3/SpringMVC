@@ -6,6 +6,10 @@
 	<typeAliases>							<!-- resultType -->
 		<typeAlias type="model.RcpDataBean" alias="Rcp"/>
 		<typeAlias type="model.Member" alias="Member" />
+		<typeAlias type="model.Cart" alias="Cart"/>
+		<typeAlias type="model.OrderInfo" alias="OrderInfo" />
+		<typeAlias type="model.OrderProduct" alias="OrderInfo" />
+		<typeAlias type="model.MemAddress" alias="MemAddress" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
