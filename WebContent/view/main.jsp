@@ -44,7 +44,7 @@
 </style>
 
 <body>
-
+	test
 	<div class="inner">
 		<ul class="itemcard-list">
 			<c:if test="${count==0 }">
