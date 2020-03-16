@@ -26,6 +26,8 @@ hashTag varchar(1000),
 PRIMARY KEY(rcpNum)
 );
 
+insert into RCP values(1,'백종원 두부부침', '두부부침', '두부에 계란입혀 부침', '두부#계란#식요유#', '5', 1, sysdate,'uu', '백종원#두부부침#간단요리#간단반찬#밥반찬' );
+
 create table imgFile(
 rcpNum int not null,
 step int,
@@ -71,5 +73,9 @@ zipcode2 varchar(20),
 address3 varchar(128),
 zipcode3 varchar(20)
 );
+
+select * from RCP;
+delete from rcp;
+
 
 commit;
