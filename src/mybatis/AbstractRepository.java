@@ -9,22 +9,20 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public abstract class AbstractRepository {
 	private static SqlSessionFactory sqlSessionFactory;
-	// static은 한번만 자동으로 처리된다.
-	static{
-		setSqlSessionFactory();
-	}
-	private static void setSqlSessionFactory(){
+	static{setSqlSessionFactory();}
+	private static void setSqlSessionFactory() {
 		String resource = "mybatis/mybatis-config.xml";
 		InputStream inputStream;
-		try{
+		try {
 			inputStream = Resources.getResourceAsStream(resource);
-		}catch(IOException e){
+			
+		}catch(IOException e) {
 			throw new IllegalArgumentException(e);
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		
 	}
-	protected SqlSessionFactory getSqlSessionFactory(){
+	protected SqlSessionFactory getSqlSessionFactory() {
 		return sqlSessionFactory;
 	}
+
 }

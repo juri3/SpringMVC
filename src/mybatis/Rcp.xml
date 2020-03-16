@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.Rcp">
+	<cache />
+
+	<!-- <select id="getArticleCount" resultType="int">
+		select ifnull(count(*), 0) from Rcp
+		select nvl(count(*), 0) from Rcp
+	</select>
+
+	<select id="getmyArticleCount" parameterType="int"
+		resultType="int">
+		select ifnull(count(*),0) from Rcp where memNum = #{memNum}
+		select nvl(count(*),0) from Rcp where memNum = #{memNum}
+	</select>
+
+	<select id="getArticles" parameterType="hashmap"
+		resultType="Rcp">
+		select * from Rcp order by rcpNum limit #{startRow}, #{endRow}
+		select * from Rcp order by rcpNum between #{startRow} and #{endRow}
+	</select>
+
+	<select id="getArticle" parameterType="int" resultType="Rcp">
+		select * from Rcp where rcpNum = #{rcpNum}
+	</select> -->
+
+	<select id="insert_max" resultType="int">
+		<!-- select ifnull(max(rcpNum)),0)+1 from Rcp -->
+		select nvl(max(rcpNum)+1 ,0) from Rcp
+	</select>
+
+	<insert id="insert" parameterType="Rcp">
+		insert into Rcp values(#{rcpNum},#{title},#{foodName},#{subtitle},#{ingredient},#{cookingTime},#{memNum},sysdate,#{thumbNail},#{hashTag})
+	</insert>
+
+	<!-- <update id="updateArticle" parameterType="int">
+		update board set writer = #{writer} , email= #{email} , subject = 
+			#{subject}, passwd= #{passwd}, content = #{content} where num = #{num}
+		update Rcp set 열이름
+
+	</update>
+
+
+	<delete id="delete" parameterType="int">
+		delete from Rcp where RcpNum = #{RcpNum}
+	</delete> -->
+</mapper>

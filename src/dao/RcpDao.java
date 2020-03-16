@@ -15,14 +15,16 @@ public class RcpDao {
 	public static RcpDao getInstance() {
 		return instance;
 	}
+	private RcpDao() {}
 
-	private Connection getConnection() throws Exception{
+	private Connection getConnection() throws Exception {
 		Connection conn = null;
-		String jdbcDriver = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String dbUser = "scott";
+		String jdbcUrl = "jdbc:mysql://localhost:3306/spring";
+		String dbId = "scott";
 		String dbPass = "1111";
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		return conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
+		return conn;
 	}
 
 	/*
@@ -56,7 +58,7 @@ public class RcpDao {
 		
 		try {
 			conn = getConnection();
-			String sql = "select nvl(max(rcpNum),0)+1 from Rcp";
+			String sql = "select ifnull(max(rcpNum),0)+1 from Rcp";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -65,7 +67,7 @@ public class RcpDao {
 			System.out.println(rcpNum);
 			System.out.println(article.toString());
 			
-			sql = "insert into Rcp values(?,?,?,?,?,?,?,sysdate,?,?)";
+			sql = "insert into Rcp values(?,?,?,?,?,?,?,now(),?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rcpNum);
 			pstmt.setString(2, article.getTitle());
@@ -81,6 +83,8 @@ public class RcpDao {
 			pstmt.setString(12, article.getFileName());
 			pstmt.setString(13, article.getContent());*/
 			int num = pstmt.executeUpdate();
+			System.out.println("dao+num: " + num);
+			System.out.println(rcpNum);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
