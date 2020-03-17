@@ -15,6 +15,13 @@
 		INSERT INTO cart VALUES(#{cartNum}, #{memNum}, #{productName}, #{qty}, #{price})
 	</insert>
 	
+	<select id="getCart" parameterType="int" resultType="Cart">
+		SELECT
+			*
+		FROM Cart
+		WHERE memNum = #{memNum}
+	</select>
+	
 	<select id="getSale" parameterType="int" resultType="Sale">
 		SELECT
 			*

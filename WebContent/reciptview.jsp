@@ -23,8 +23,8 @@ a:hover {
 </style>
 
 <body>
-	<form name="select_ingredient" method="post" action="${pageContext.request.contextPath}/shopping/cart" >
-	<!-- 임의로 만든 페이지 이 부분 지영ㅇ언니꺼로 교체d d-->
+	<form name="select_ingredient" method="post" action="${pageContext.request.contextPath}/shopping/addcart" >
+	<!-- 임의로 만든 페이지 이 부분 지영언니꺼로 교체-->
 	<input type="hidden" name="rcpNum" value="${recipt.rcpNum }">
 	<input type="hidden" name="productName" value="${sale.productname }">
 	<input type="hidden" name="price" value="${sale.price }">
@@ -52,7 +52,7 @@ a:hover {
 			<td>${recipt.hashTag }</td>
 		</tr>
 		<tr>
-			<td>가격</td>
+			<td>가   격</td>
 			<td>${sale.price } 원</td>
 		</tr>
 		</tbody>

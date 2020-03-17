@@ -1,9 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -55,6 +51,17 @@ public class ShoppingRepository extends AbstractRepository{
 		}
 	}
 
+	public List<Cart> getCart(int memNum) {
+		// TODO Auto-generated method stub
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try{
+			String statement = namespace + ".getCart";
+			return sqlSession.selectList(statement, memNum);
+		}finally{
+			sqlSession.close();
+		}
+	}
+	
 	public Sale getSale(int rcpNum) {
 		// TODO Auto-generated method stub
 		SqlSession sqlSession = getSqlSessionFactory().openSession();

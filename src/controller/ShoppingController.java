@@ -77,22 +77,40 @@ public class ShoppingController extends ActionAnnotation {
 		return array;
 	}
 
-	@RequestMapping(value = "cart", method=RequestMethod.POST) // 맨끝단의 url만 가지고 옴, get방식으로 한다.
-	public String shoppingCart(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value = "addcart", method=RequestMethod.POST) // 맨끝단의 url만 가지고 옴, get방식으로 한다.
+	public String addcart(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
 		Cart cart = new Cart();
-		cart.setMemNum(Integer.parseInt((String)session.getAttribute("memNum")));
+		int memNo = Integer.parseInt((String)session.getAttribute("memNum"));
+		cart.setMemNum(memNo);
 		cart.setPrice(Integer.parseInt(request.getParameter("price")));
 		cart.setQty(Integer.parseInt(request.getParameter("amount")));
 		cart.setProductName(request.getParameter("productName"));
-		System.out.println("controller : "+cart);
 		int result = service.insertCart(cart);
+		List<Cart> cartlist = service.getCart(memNo);
+		System.out.println("getcart : "+cartlist);
 		
-
-		return "/view/shopping/shoppingcartForm.jsp";
-
+		request.setAttribute("cartlist", cartlist);
+		
+		return "redirect:/shopping/cartview";
+		
 	}
 
+	@RequestMapping(value = "cartview", method=RequestMethod.GET) // 맨끝단의 url만 가지고 옴, get방식으로 한다.
+	public String cartview(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
+		Cart cart = new Cart();
+		int memNo = Integer.parseInt((String)session.getAttribute("memNum"));
+		List<Cart> cartlist = service.getCart(memNo);
+		System.out.println("getcart : "+cartlist);
+		
+		request.setAttribute("cartlist", cartlist);
+		
+		return "/view/shopping/shoppingcartForm.jsp";
+		
+	}
 }
