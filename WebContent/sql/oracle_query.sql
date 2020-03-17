@@ -26,6 +26,8 @@ hashTag varchar(1000),
 PRIMARY KEY(rcpNum)
 );
 
+insert into RCP values(1,'백종원 두부부침', '두부부침', '두부에 계란입혀 부침', '두부#계란#식요유#', '5', 1, sysdate,'uu', '백종원#두부부침#간단요리#간단반찬#밥반찬' );
+
 create table imgFile(
 rcpNum int not null,
 step int,
@@ -33,5 +35,47 @@ fileSize int,
 fileName varchar(30),
 content varchar(100)
 );
+
+create table order_info(
+ordernum number not null primary key,
+memNum int not null,
+orderdate date not null,
+amount number,
+memName varchar(10),
+address varchar(128) not null,
+zipcode varchar(20) not null
+);
+
+create table order_product(
+productnum int not null primary key,
+ordernum number not null,
+productname varchar(10),
+qty int,
+price number 
+);
+
+create table cart(
+cartnum int not null primary key,
+memNum int not null,
+productname varchar(10),
+qty int,
+price number 
+);
+
+create table mem_address(
+addressnum int not null primary key,
+memNum int not null,
+memName varchar(10),
+address1 varchar(128) not null,
+zipcode1 varchar(20) not null,
+address2 varchar(128),
+zipcode2 varchar(20),
+address3 varchar(128),
+zipcode3 varchar(20)
+);
+
+select * from RCP;
+delete from rcp;
+
 
 commit;
