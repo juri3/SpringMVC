@@ -22,7 +22,7 @@ import action.RequestMapping;
 public class ShoppingController extends ActionAnnotation {
 
 	public void initProcess(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("===============");
+		System.out.println("=====dd==========");
 		HttpSession session = request.getSession();
 
 		try {
