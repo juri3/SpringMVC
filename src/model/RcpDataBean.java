@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RcpDataBean {
+public class RcpDataBean implements Serializable {
 	// rcp table
 	int rcpNum; // rcpNum int primary key,
 	String title; // title varchar(20),
