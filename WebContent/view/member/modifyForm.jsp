@@ -30,11 +30,21 @@ img {
     		reader.readAsDataURL(value.files[0]);
     	}
 	}
-</script> 
+    
+    function check() {	
+    	var userModify=eval("document.userModify");
+    	
+		if(!userModify.name.value){
+			alert("닉네임을 입력하세요");
+			userModify.name.focus();
+			return false;
+		}
+	}
+</script>
 
 <body>
 
-	<form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/member/modifyPro">
+	<form method="post" enctype="multipart/form-data" name="userModify" action="<%=request.getContextPath()%>/member/modifyPro"	onSubmit="return check()">
 		<input type="hidden" name="memNum" value="${member.memNum}">
 		<input type="hidden" name="profile" value="${member.profile}">
 		<table width="500" border="1" cellspacing="0" cellpadding="3" align="center">
@@ -44,25 +54,24 @@ img {
 			<tr>
 				<td colspan="2" style="text-align: center;">
 					<img id="profileImg" src="<%=request.getContextPath()%>/uploadFile/${member.profile}">
+					<br>
+					<style>#profile {display: none;}</style>
+					<input type='file' id="profile" name="profile" value="${member.profile}" onchange="readyImg(this)"> 
+					<input type="button" value="프로필 변경" onclick="document.getElementById('profile').click();" > 
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-                   	프로필 등록 <input type="file" name="profile" value="${member.profile}" onchange="readyImg(this)">
-                </td>
-			</tr>			
 			<tr>
 				<td>Email</td>
 				<td>${member.email}</td>
 			</tr>
 			<tr>
-				<td>비밀번호</td>
-				<td><input type="password" name="passwd" size="15" maxlength="12"></td>
+				<td>이름(닉네임)</td>
+				<td><input type="text" name="name" size="15" maxlength="5" value="${member.name}" autocomplete="off"></td>
 			</tr>
 			<tr>
-				<td>이름(닉네임)</td>
-				<td><input type="text" name="name" size="15" maxlength="10" value="${member.name}"></td>
-			</tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="passwd" size="15" maxlength="12"></td>
+			</tr>			
 			<tr>
 				<td>자기소개</td>
 				<td><textarea name="selfIntroduction" rows="13" cols="40" style="resize: none;">${member.selfIntroduction}</textarea></td>

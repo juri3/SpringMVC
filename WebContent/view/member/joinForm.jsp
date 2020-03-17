@@ -25,13 +25,13 @@
 		method="post" onSubmit="return check()">
 		<p>
 			이메일 주소:<br />
-			<input type="text" name="email" value="${param.email }" id="email">
+			<input type="text" name="email" value="${param.email }" id="email" autocomplete="off">
 			<c:if test="${errors.email }">이메일주소를 입력하세요</c:if>
 			<c:if test="${errors.duplicateId }">이미 사용중인 아이디 입니다.</c:if>
 		</p>
 		<p>
 			이름:<br />
-			<input type="text" name="name" value="${param.name }">
+			<input type="text" name="name" value="${param.name }" autocomplete="off">
 			<c:if test="${errors.name }">이름을 입력하세요</c:if>
 		</p>
 		<p>

@@ -131,7 +131,7 @@ ol, ul {
 		<div class="inner">
 			<img src="<%=request.getContextPath()%>/uploadFile/${member.profile}">
 			<strong>${member.name}</strong>
-			<span>팔로워 0명</span>
+			<span>팔로워 ${followerCount}명</span>
 			<p class="dsc">
 				<br><br>
 				<strong>${member.selfIntroduction}</strong>

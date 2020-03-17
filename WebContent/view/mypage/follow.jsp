@@ -7,8 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<meta http-equiv="Refresh" content="0;url=mypage?memNum=${memNum}">
+	
+	<c:if test="${check==1}">
+		<meta http-equiv="Refresh" content="0;url=mypage?memNum=${memNum}">
+	</c:if>
+	<c:if test="${check==0}">
+		<script>
+			alert("먼저 로그인해 주세요.");
+			document.location.href="<%=request.getContextPath()%>/member/login"
+		</script>
+	</c:if>
 	
 </body>
 </html>

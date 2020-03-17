@@ -118,19 +118,26 @@ public class MybatisMemberDao extends AbstractRepository
 		return x;
 	}
 	
-	public void insertFollow(Follow follow){
+	public int insertFollow(Follow follow){
 		 SqlSession sqlSession = getSqlSessionFactory().openSession();	   
+		 int check;
 		 
 	        try
 	        {
-	            String statement = namespace + ".insertFollow";
-	            sqlSession.insert(statement, follow);
-	            sqlSession.commit();
+	        	if(follow.getMemNum()==0){
+	        		check=0;
+	        	}else{
+	        		String statement = namespace + ".insertFollow";
+		            sqlSession.insert(statement, follow);
+		            sqlSession.commit();
+		            check=1;
+	        	}	            
 	        }
 	        finally
 	        {
 	            sqlSession.close();
 	        }
+	        return check;
 	}
 	
 	public int checkFollow(int loginNum, int memNum){
@@ -153,12 +160,12 @@ public class MybatisMemberDao extends AbstractRepository
 	        return checkFollow;
 	}
 	
-	public void deleteFollow(Follow follow){
+	public void unFollow(Follow follow){
 		 SqlSession sqlSession = getSqlSessionFactory().openSession();	   
 		 
 	        try
 	        {
-	            String statement = namespace + ".deleteFollow";
+	            String statement = namespace + ".unFollow";
 	            sqlSession.delete(statement, follow);
 	            sqlSession.commit();
 	        }
@@ -182,15 +189,28 @@ public class MybatisMemberDao extends AbstractRepository
 		return count;
 	}
 	
+	public int followerCount(int memNum){
+		SqlSession sqlSession=getSqlSessionFactory().openSession();
+		int count;
+		
+		try{
+			String statement=namespace+".followerCount"; 
+			count=sqlSession.selectOne(statement, memNum);
+		}finally{
+			sqlSession.close();
+		}
+
+		return count;
+	}
+	
 	public List<Member> followList(int memNum){
 		SqlSession sqlSession=getSqlSessionFactory().openSession();
 		List<Member> followList=null;
 		String statement;
-		System.out.println(memNum);
+		
 		try{
 			statement=namespace+".getFollow";         
 			followList=sqlSession.selectList(statement, memNum);
-			System.out.println(followList);
 		}finally{
 			sqlSession.close();
 		}

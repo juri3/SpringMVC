@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where memNum=#{memNum} and followNum=#{followNum}
 	</select>
 	
-	<delete id="deleteFollow" parameterType="Follow">
+	<delete id="unFollow" parameterType="Follow">
 		delete from follow where memNum=#{memNum} and followNum=#{followNum}
 	</delete>
 	
@@ -64,6 +64,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) 
 		from follow
 		where memNum=#{memNum}
+	</select>
+	
+	<select id="followerCount" parameterType="int" resultType="int">
+		select count(*) 
+		from follow
+		where followNum=#{memNum}
 	</select>
 	
 	<select id="getFollow" parameterType="int" resultType="Member">

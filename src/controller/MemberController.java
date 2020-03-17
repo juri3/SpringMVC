@@ -169,24 +169,34 @@ public class MemberController extends ActionAnnotation{
     	HttpSession session = request.getSession();
     	
 		int memNum = Integer.parseInt(request.getParameter("memNum"));
-		int loginNum=(int)session.getAttribute("memNum");
+		int loginNum=0;
+		
+		if(session.getAttribute("memNum")==null){
+			session.setAttribute("memNum", 0);
+			loginNum=(int)session.getAttribute("memNum");
+		}else{
+			loginNum=(int)session.getAttribute("memNum");
+		}
 		
 		Member member = null;
 		List<Member> followList = null;
 		int followCount;
+		int followerCount;
 		int checkFollow;
 		
 		MybatisMemberDao service = MybatisMemberDao.getInstance();
 		
 		member = service.getMember(memNum);
 		checkFollow=service.checkFollow(loginNum, memNum);
-		followCount = service.followCount(loginNum);
-		followList = service.followList(loginNum);
+		followCount = service.followCount(memNum);
+		followerCount = service.followerCount(memNum);
+		followList = service.followList(memNum);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("loginNum", loginNum);
 		request.setAttribute("checkFollow", checkFollow);		
 		request.setAttribute("followCount", followCount);
+		request.setAttribute("followerCount", followerCount);
 		request.setAttribute("followList", followList);
 		
 		return "/view/mypage/mypage.jsp";
@@ -242,7 +252,7 @@ public class MemberController extends ActionAnnotation{
 			member.setSelfIntroduction(multi.getParameter("selfIntroduction"));
 			
 			MybatisMemberDao service = MybatisMemberDao.getInstance();
-			
+			System.out.println("111111111");
 			int check = service.updateMember(member);
 			
 			request.setAttribute("check", check);
@@ -267,15 +277,16 @@ public class MemberController extends ActionAnnotation{
 		
 		MybatisMemberDao service = MybatisMemberDao.getInstance();
 		
-		service.insertFollow(follow);		
+		int check=service.insertFollow(follow);
 		
 		request.setAttribute("memNum", memNum);	
+		request.setAttribute("check", check);
 	
 		return "/view/mypage/follow.jsp";
 	}
     
     @RequestMapping(value="unFollow", method=RequestMethod.GET)
-   	public String getFollow(HttpServletRequest request, HttpServletResponse response) throws Exception {
+   	public String unFollow(HttpServletRequest request, HttpServletResponse response) throws Exception {
    		HttpSession session = request.getSession();
    		
    		int memNum = Integer.parseInt(request.getParameter("memNum"));
@@ -287,7 +298,7 @@ public class MemberController extends ActionAnnotation{
    		
    		MybatisMemberDao service = MybatisMemberDao.getInstance();
    		
-   		service.deleteFollow(follow);		
+   		service.unFollow(follow);		
    		
    		request.setAttribute("memNum", memNum);	
    	
