@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ShoppingRepository;
+import model.Cart;
 import model.RcpDataBean;
+import model.Sale;
 import action.RequestMapping.RequestMethod;
 import action.ActionAnnotation;
 import action.RequestMapping;
@@ -47,33 +49,47 @@ public class ShoppingController extends ActionAnnotation {
 	public String reciptview(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		session.getAttribute("memId");
-		RcpDataBean recipt = service.getIngredient();
+		session.setAttribute("memNum", "1");
+		int rcpNum = 1;// 나중에 get값으로 받음
+		
+		RcpDataBean recipt = service.getIngredient(rcpNum);
+
+		Sale sale = service.getSale(rcpNum);
+		System.out.println("price : "+sale);
+		
 		System.out.println("ingredient : " + recipt.getIngredient());
-		String str = recipt.getIngredient();
-		String[] array = str.split("#");
-		for (int i = 0; i < array.length; i++) {
-			System.out.println("split : " + array[i]);
-		}
+		
+		String[] array = ingredients_split(recipt.getIngredient());
+		
 		request.setAttribute("ingredients", array);
 		request.setAttribute("recipt", recipt);
+		request.setAttribute("sale", sale);
 
 		return "/reciptview.jsp";
+	}
+	
+	private String[] ingredients_split(String ingredients){
+		String str = ingredients;
+		String[] array = str.split("#");
+		for (String ingredient : array) {
+			System.out.println("split : " + ingredient);
+		}
+		return array;
 	}
 
 	@RequestMapping(value = "cart", method=RequestMethod.POST) // 맨끝단의 url만 가지고 옴, get방식으로 한다.
 	public String shoppingCart(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		session.getAttribute("memId");
-		RcpDataBean recipt = service.getIngredient();
 		
-		String[] selected = request.getParameterValues("select");
-		System.out.println(selected);
-		for(String str : selected){
-			System.out.println(str);
-		}
-		request.setAttribute("selected", selected);
+		Cart cart = new Cart();
+		cart.setMemNum(Integer.parseInt((String)session.getAttribute("memNum")));
+		cart.setPrice(Integer.parseInt(request.getParameter("price")));
+		cart.setQty(Integer.parseInt(request.getParameter("amount")));
+		cart.setProductName(request.getParameter("productName"));
+		System.out.println("controller : "+cart);
+		int result = service.insertCart(cart);
+		
 
 		return "/view/shopping/shoppingcartForm.jsp";
 
