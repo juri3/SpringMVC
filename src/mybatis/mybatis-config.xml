@@ -8,7 +8,7 @@
 		<typeAlias type="model.Member" alias="Member" />
 		<typeAlias type="model.Cart" alias="Cart"/>
 		<typeAlias type="model.OrderInfo" alias="OrderInfo" />
-		<typeAlias type="model.OrderProduct" alias="OrderInfo" />
+		<typeAlias type="model.OrderProduct" alias="OrderProduct" />
 		<typeAlias type="model.MemAddress" alias="MemAddress" />
 		<typeAlias type="model.Sale" alias="Sale" />
 	</typeAliases>

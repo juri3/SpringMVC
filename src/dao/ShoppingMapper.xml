@@ -8,7 +8,34 @@
 		SELECT
 			*
 		FROM Rcp
+		WHERE rcpnum = #{rcpNum}
 	</select>
-
+	
+	<insert id="insertCart"	parameterType="Cart">
+		INSERT INTO cart VALUES(#{cartNum}, #{memNum}, #{productName}, #{qty}, #{price})
+	</insert>
+	
+	<select id="getSale" parameterType="int" resultType="Sale">
+		SELECT
+			*
+		FROM sale
+		WHERE rcpNum = #{rcpNum}
+	</select>
+	
+	<select id="insert_maxCart" resultType="int">
+		SELECT
+			nvl(max(cartNum)+1,0) 
+		FROM Cart
+	</select>
+	<select id="insert_maxOP" resultType="int">
+		SELECT
+			max(productNum)+1 
+		FROM order_product
+	</select>
+	<select id="insert_maxMA" resultType="int">
+		SELECT
+			max(addressNum)+1 
+		FROM mem_address
+	</select>
 	
 </mapper>	
