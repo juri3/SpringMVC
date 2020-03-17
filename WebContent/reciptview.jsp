@@ -50,7 +50,7 @@ a:hover {
 		</tr>
 		</tbody>
 		</table>
-		<button onclick=""><span id="all">전체선택</span></button>
+		<button onclick=""><span id="all">전체dd선택</span></button>
 		<input type="submit"><i class="material-icons" style="font-size: 30px;">add_shopping_cart</i>장바구니담기
 	</form>
 </body>
