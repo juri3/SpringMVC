@@ -12,11 +12,13 @@
 	<div class="w3-container">
 		<b>레시피 작성</b><br> <br> <br> <br>
 
+
 		<form method="post" name="writeForm"
 			action="${pageContext.request.contextPath}/rcp/writePro">
-			<input type="hidden" name="rcpNum" value=1>
-			<%-- "${rcpNum}" --%>
-			<input type="hidden" name="memNum" value=1> [카테고리]
+			<input type="hidden" name="rcpNum" value="${rcpNum}">
+			<input type="hidden" name="memNum" value="${memNum}">
+				
+			[카테고리]
 			<!-- <select name="nation">
     	<option value="korean">한식</option>
     	<option value="chinese">중식</option>

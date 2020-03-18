@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ShoppingRepository;
-import model.RcpDataBean;
+import model.Rcp;
 import action.RequestMapping.RequestMethod;
 import action.ActionAnnotation;
 import action.RequestMapping;
 
-//¼­ºí¸´ ±×ÀÚÃ¼, ¿Ö³ÄÇÏ¸é ¼­ºí¸´À» »ó¼Ó¹Þ¾Ò±â ¶§¹®¿¡
+//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼, ï¿½Ö³ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ó¹Þ¾Ò±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class ShoppingController extends ActionAnnotation {
 
 	public void initProcess(HttpServletRequest request, HttpServletResponse response) {
@@ -43,12 +43,12 @@ public class ShoppingController extends ActionAnnotation {
 
 	ShoppingRepository service = ShoppingRepository.getInstance();
 
-	@RequestMapping(value = "list") // ¸Ç³¡´ÜÀÇ url¸¸ °¡Áö°í ¿È, get¹æ½ÄÀ¸·Î ÇÑ´Ù.
+	@RequestMapping(value = "list") // ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½ urlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	public String reciptview(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.getAttribute("memId");
-		RcpDataBean recipt = service.getIngredient();
+		Rcp recipt = service.getIngredient();
 		System.out.println("ingredient : " + recipt.getIngredient());
 		String str = recipt.getIngredient();
 		String[] array = str.split("#");
@@ -61,12 +61,12 @@ public class ShoppingController extends ActionAnnotation {
 		return "/reciptview.jsp";
 	}
 
-	@RequestMapping(value = "cart", method=RequestMethod.POST) // ¸Ç³¡´ÜÀÇ url¸¸ °¡Áö°í ¿È, get¹æ½ÄÀ¸·Î ÇÑ´Ù.
+	@RequestMapping(value = "cart", method=RequestMethod.POST) // ï¿½Ç³ï¿½ï¿½ï¿½ï¿½ï¿½ urlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	public String shoppingCart(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.getAttribute("memId");
-		RcpDataBean recipt = service.getIngredient();
+		Rcp recipt = service.getIngredient();
 		
 		String[] selected = request.getParameterValues("select");
 		System.out.println(selected);

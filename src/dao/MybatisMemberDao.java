@@ -10,7 +10,7 @@ import mybatis.AbstractRepository;
 
 public class MybatisMemberDao extends AbstractRepository
 {
-    private final String namespace = "mybatis.Member";
+    private final String namespace = "dao.MemberMapper";
 
     private static MybatisMemberDao instance = new MybatisMemberDao();
     

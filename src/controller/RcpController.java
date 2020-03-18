@@ -8,9 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import action.ActionAnnotation;
 import action.RequestMapping;
-import dao.MybatisRcpDaoMysql;
-import model.RcpDataBean;
 import action.RequestMapping.RequestMethod;
+import dao.MybatisRcpDaoMysql;
+import model.Rcp;
+import model.RcpContent;
 
 public class RcpController extends ActionAnnotation {
 
@@ -27,7 +28,7 @@ public class RcpController extends ActionAnnotation {
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String board_list(HttpServletRequest request, HttpServletResponse res) throws Exception {
+	public String rcp_list(HttpServletRequest request, HttpServletResponse res) throws Exception {
 		/* HttpSession session = request.getSession();
 
 		request.setCharacterEncoding("UTF-8");
@@ -99,24 +100,40 @@ public class RcpController extends ActionAnnotation {
 
 	@RequestMapping(value = "writePro", method = RequestMethod.POST)
 	public String rcp_writePro(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+	HttpSession session = request.getSession();	
 		try {
-			RcpDataBean article = new RcpDataBean();
+			
+			Rcp article = new Rcp();
+			RcpContent rcpContent = new RcpContent();
+			
 			article.setRcpNum(Integer.parseInt(request.getParameter("rcpNum")));
 			article.setTitle(request.getParameter("title"));
 			article.setFoodName(request.getParameter("foodName"));
 			article.setSubtitle(request.getParameter("subtitle"));
 			article.setIngredient(request.getParameter("ingredient"));
+			article.setQuantity(request.getParameter("quantity"));
 			article.setCookingTime(request.getParameter("cookingTime"));
-			article.setMemNum(Integer.parseInt(request.getParameter("memNum")));
+		
+			article.setMemNum((int)session.getAttribute("memNum"));  //nullPointerException
+			
 			article.setThumbNail(request.getParameter("thumbNail"));
 			article.setHashTag(request.getParameter("hashTag"));
-
+			
+			rcpContent.setStep(Integer.parseInt(request.getParameter("step")));
+			rcpContent.setFileName(request.getParameter("fileName"));
+			rcpContent.setContent(request.getParameter("content"));
+			
 			MybatisRcpDaoMysql service = MybatisRcpDaoMysql.getInstance();
 			service.insertArticle(article);
 
 			request.setAttribute("article", article);
-
+			request.setAttribute("rcpContent", rcpContent);
+			
+			
+			//session.setAttribute("memNum", memNum);
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -193,7 +210,6 @@ public class RcpController extends ActionAnnotation {
 		String passwd = request.getParameter("passwd");
 
 		MybatisRcpDaoMysql dbPro = MybatisRcpDaoMysql.getInstance();
-		int check = dbPro.deleteArticle(rcpNum, passwd);
 
 		request.setAttribute("check", check);
 

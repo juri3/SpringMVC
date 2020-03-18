@@ -25,7 +25,7 @@
 			</tr>
 
 			<tr>
-				<td>레시피</td>
+				<td>레시피 제목</td>
 				<td>${article.title}</td>
 			</tr>
 			<tr>
@@ -37,9 +37,14 @@
 				<td>필요한 재료</td>
 				<td>${article.ingredient}</td>
 			</tr>
+			
+			<tr>
+				<td>재료 수량</td>
+				<td>${article.quantity}</td>
+			</tr>
 
 			<tr>
-				<td>작성자(일단 회원번호로 해둠)</td>
+				<td>작성자</td>
 				<td>${article.memNum}</td>
 			</tr>
 
@@ -66,7 +71,7 @@
 			<tr>
 				<td>이미지</td>
 				<td><img
-					src="<%=request.getContextPath() %>/uploadFile/${article.fileName}"></td>
+					src="<%=request.getContextPath() %>/uploadFile/${contents.fileName}"></td>
 			</tr>
 			<tr>
 				<td colspan="4" class="w3-center"><input type="button"

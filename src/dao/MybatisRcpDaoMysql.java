@@ -1,16 +1,12 @@
 package dao;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 
-import model.RcpDataBean;
+import model.Rcp;
 import mybatis.AbstractRepository;
 
 public class MybatisRcpDaoMysql extends AbstractRepository {
-	private final String namespace = "mybatis.Rcp";
+	private final String namespace = "dao.RcpMapper";
 	private static MybatisRcpDaoMysql instance = new MybatisRcpDaoMysql();
 
 	public static MybatisRcpDaoMysql getInstance() {
@@ -91,23 +87,22 @@ public class MybatisRcpDaoMysql extends AbstractRepository {
 		return article;
 	}*/
 
-	public void insertArticle(RcpDataBean article) {
+	public void insertArticle(Rcp article) {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-
+		
 		//int rcpNum = article.getRcpNum(); //값을 받아올 필요가 없으니 사용하지 않아야한다. (nullPointerException)
 		int rcpNum;
-
+		
 		try {
 			String statement = namespace + ".insert_max";
 			rcpNum = sqlSession.selectOne(statement);
 
 			article.setRcpNum(rcpNum); // 필요한가요? -> 필요합니다(rcpNum max값을 여기에 저장)
-			String statement2 = namespace + ".insert";
-			
+			String statement2 = namespace + ".insert1";
 			sqlSession.insert(statement2, article);
-			System.out.println("111111111");
 			sqlSession.commit();
+			
 
 		} finally {
 			sqlSession.close();

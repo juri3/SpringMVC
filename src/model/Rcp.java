@@ -1,56 +1,29 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RcpDataBean {
+public class Rcp implements Serializable {
 	// rcp table
 	int rcpNum; // rcpNum int primary key,
 	String title; // title varchar(20),
 	String foodName; // foodName varchar(30),
 	String subtitle; // subtitle varchar(30),
 	String ingredient; // ingredient2 varchar(50),
+	String quantity; //quantity varchar(500),
 	String cookingTime; // cookingTime varchar(30),
 	int memNum; // memNum int,
 	Date reg_date; // reg_date date,
 	String thumbNail; // thumbNail varchar(30),
 	String hashTag; // HashTag varchar(1000)
+	
 
-	// imgFile table
-	int step;
-	int fileSize; // fileSize int,
-	String fileName; // fileName varchar(30)
-	String content; // content varchar(100)
-
-	public int getStep() {
-		return step;
+	public String getQuantity() {
+		return quantity;
 	}
 
-	public void setStep(int step) {
-		this.step = step;
-	}
-
-	public int getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(int fileSize) {
-		this.fileSize = fileSize;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
 
 	public int getRcpNum() {
