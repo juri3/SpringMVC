@@ -45,7 +45,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update member set profile=#{profile}, name=#{name}, selfIntroduction=#{selfIntroduction}
 		where memNum=#{memNum}
 	</update>
+	
+	<insert id="insertFollow" parameterType="Follow">
+		insert into follow values (#{memNum},#{followNum})
+	</insert>
+	
+	<select id="checkFollow" parameterType="hashmap" resultType="int">
+		select NVL(count(*),0) 
+		from follow 
+		where memNum=#{memNum} and followNum=#{followNum}
+	</select>
+	
+	<delete id="unFollow" parameterType="Follow">
+		delete from follow where memNum=#{memNum} and followNum=#{followNum}
+	</delete>
+	
+	<select id="followCount" parameterType="int" resultType="int">
+		select count(*) 
+		from follow
+		where memNum=#{memNum}
+	</select>
+	
+	<select id="followerCount" parameterType="int" resultType="int">
+		select count(*) 
+		from follow
+		where followNum=#{memNum}
+	</select>
+	
+	<select id="getFollow" parameterType="int" resultType="Member">
+		select m.memnum, m.profile, m.name
+		from follow f, member m
+		where f.FOLLOWNUM=m.MEMNUM and f.memNum=#{memNum}
+	</select>
 
 </mapper>
-
-

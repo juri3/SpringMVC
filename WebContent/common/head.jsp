@@ -50,7 +50,7 @@
 	<div class="bar_top">
 		<div class="inner">
 			<form class="box_search">
-				<input type="text" name="name" placeholder="음식명으로 검색해주세요">
+				<input type="text" name="name" placeholder="음식명으로 검색해주세요" autocomplete="off">
 				<button type="submit">검색</button>
 			</form>
 			
