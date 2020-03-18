@@ -15,12 +15,44 @@ public class RcpDataBean {
 	String thumbNail; // thumbNail varchar(30),
 	String hashTag; // HashTag varchar(1000)
 
-	/*// imgFile table
+	// imgFile table
 	int step;
 	int fileSize; // fileSize int,
 	String fileName; // fileName varchar(30)
 	String content; // content varchar(100)
-*/
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 	public int getRcpNum() {
 		return rcpNum;
 	}
@@ -101,36 +133,22 @@ public class RcpDataBean {
 		this.hashTag = hashTag;
 	}
 
-	/*public int getStep() {
-		return step;
-	}
-
-	public void setStep(int step) {
-		this.step = step;
-	}
-
-	public int getFileSize() {
-		return fileSize;
-	}
-
-	public void setFileSize(int fileSize) {
-		this.fileSize = fileSize;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}*/
+	/*
+	 * public int getStep() { return step; }
+	 * 
+	 * public void setStep(int step) { this.step = step; }
+	 * 
+	 * public int getFileSize() { return fileSize; }
+	 * 
+	 * public void setFileSize(int fileSize) { this.fileSize = fileSize; }
+	 * 
+	 * public String getFileName() { return fileName; }
+	 * 
+	 * public void setFileName(String fileName) { this.fileName = fileName; }
+	 * 
+	 * public String getContent() { return content; }
+	 * 
+	 * public void setContent(String content) { this.content = content; }
+	 */
 
 }

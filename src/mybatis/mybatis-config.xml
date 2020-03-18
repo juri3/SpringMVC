@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -28,4 +29,37 @@
 		<mapper resource="dao/ShoppingMapper.xml"/>
 		<mapper resource="dao/MemberMapper.xml" />
 	</mappers>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="model.RcpDataBean" alias="Rcp" />
+		<!-- <typeAlias type="model.MemberDataBean" alias="Member" /> -->
+
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<!-- <property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/spring" /> -->
+					<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+					<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+				<property name="username" value="scott" />
+				<property name="password" value="1111" />
+			</dataSource>
+
+		</environment>
+
+	</environments>
+
+	<mappers>
+		<mapper resource="mybatis/Rcp.xml" />
+		<!-- <mapper resource="mybatis/Member.xml" /> -->
+	</mappers>
+>>>>>>> refs/remotes/origin/jy
 </configuration>
