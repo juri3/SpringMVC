@@ -61,7 +61,7 @@
 			<thead>
 				<tr>
 					<td><input type="checkbox" id="cart_all" checked ></td>
-					<td>상품명</td> <td>수량</td> <td>가격</td> <td>배송비</td>
+					<td>상품명</td> <td>수ㅇ량</td> <td>가격</td> <td>배송비</td>
 				</tr>
 			</thead>
 			<tbody>
