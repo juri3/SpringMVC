@@ -22,8 +22,20 @@
 		WHERE memNum = #{memNum}
 	</select>
 	
-	<delete id="deletCartvalue">
-		delete from exam_user 
+	<select id="getCartintoJjim" parameterType="int" resultType="Cart">
+		SELECT
+			*
+		FROM Cart
+		WHERE cartNum = #{cartNum}
+	</select>
+	
+	<insert id="insertjjim"	parameterType="Jjim">
+		INSERT INTO jjim VALUES(#{jjimNum}, #{memNum}, #{productName}, #{price})
+	</insert>
+	
+	<delete id="deleteCartvalue" parameterType="int">
+		DELETE FROM cart
+		WHERE cartNum = #{cartNum}
 	</delete>
 	
 	<select id="getSale" parameterType="int" resultType="Sale">
@@ -37,6 +49,11 @@
 		SELECT
 			nvl(max(cartNum)+1,0) 
 		FROM Cart
+	</select>
+	<select id="insert_maxJjim" resultType="int">
+		SELECT
+			nvl(max(cartNum)+1,0) 
+		FROM Jjim
 	</select>
 	<select id="insert_maxOP" resultType="int">
 		SELECT

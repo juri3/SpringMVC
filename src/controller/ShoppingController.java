@@ -121,10 +121,24 @@ public class ShoppingController extends ActionAnnotation {
 		
 		String[] values = request.getParameterValues("cart");
 		for(String str : values){
-			System.out.println(str);
+			int check = service.deleteCartvalue(Integer.parseInt(str));
+			System.out.println(str+" : "+check);
 		}
-				
 		
-		return "/view/shopping/shoppingcartForm.jsp";
+		return "redirect:/shopping/cartview";
+	}
+	
+	@RequestMapping(value = "regist_jjim", method=RequestMethod.POST)
+	public String regist_jjim(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
+		String[] values = request.getParameterValues("cart");
+		for(String str : values){
+			int check = service.registjjim(Integer.parseInt(str));
+			System.out.println(str+" : "+check);
+		}
+		
+		return "redirect:/shopping/cartview";
 	}
 }
