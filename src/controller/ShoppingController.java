@@ -24,6 +24,7 @@ public class ShoppingController extends ActionAnnotation {
 	public void initProcess(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("=====dd==========");
 		HttpSession session = request.getSession();
+		session.setAttribute("memNum", "1");
 
 		try {
 			request.setCharacterEncoding("UTF-8");
@@ -49,7 +50,7 @@ public class ShoppingController extends ActionAnnotation {
 	public String reciptview(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		session.setAttribute("memNum", "1");
+		
 		int rcpNum = 1;// 나중에 get값으로 받음
 		
 		RcpDataBean recipt = service.getIngredient(rcpNum);
@@ -111,6 +112,19 @@ public class ShoppingController extends ActionAnnotation {
 		request.setAttribute("cartlist", cartlist);
 		
 		return "/view/shopping/shoppingcartForm.jsp";
+	}
+	
+	@RequestMapping(value = "cart_delete", method=RequestMethod.POST)
+	public String cart_delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		
+		String[] values = request.getParameterValues("cart");
+		for(String str : values){
+			System.out.println(str);
+		}
+				
+		
+		return "/view/shopping/shoppingcartForm.jsp";
 	}
 }

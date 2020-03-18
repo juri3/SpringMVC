@@ -22,6 +22,10 @@
 		WHERE memNum = #{memNum}
 	</select>
 	
+	<delete id="deletCartvalue">
+		delete from exam_user 
+	</delete>
+	
 	<select id="getSale" parameterType="int" resultType="Sale">
 		SELECT
 			*
