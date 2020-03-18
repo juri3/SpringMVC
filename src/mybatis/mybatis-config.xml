@@ -28,5 +28,6 @@
 		<mapper resource="dao/ShoppingMapper.xml"/>
 		<mapper resource="dao/RcpMapper.xml" />
 		<mapper resource="dao/MemberMapper.xml" />
+		<mapper resource="dao/RcpMapper.xml" />
 	</mappers>
 </configuration>

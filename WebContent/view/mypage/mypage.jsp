@@ -122,6 +122,37 @@ ol, ul {
     top: 30px;
     left: 30px;
 }
+.lst_recipe {
+    width: 1040px;
+    position: relative;
+    left: -16px;
+    overflow: hidden;
+    margin-bottom: 56px;
+}
+.lst_recipe>li {
+    width: 244px;
+    height: 390px;
+    margin: 0 0 16px 16px;
+    position: relative;
+    border: 1px solid #e1e1e1;
+    box-sizing: border-box;
+    float: left;
+    background-color: #fff;
+    margin: 0 0 16px 16px;
+}
+li.btn_add a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    background: #e36113 url(/assets/_img/mypage/add_my_recipe-81ca769….png) center 118px no-repeat;
+    color: #ffaa77;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 110px;
+    text-decoration: none;
 </style>
 
 <body>
@@ -169,7 +200,11 @@ ol, ul {
 	</div>
 	
 	<div class="title" id = "myRecipe" style="margin: 0px 200px;">
-		myRecipe
+		<ul class="lst_recipe">
+			<li class="btn_add">
+				<a href="#"><h1 style="margin: 0px;">+</h1><br>나의 레시피 추가하기</a>
+			</li>
+		</ul>
 	</div>
 	
 	<div class="title" id = "scrap" style = "display:none; margin: 0px 200px;">
