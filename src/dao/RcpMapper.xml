@@ -31,7 +31,7 @@
 		select nvl(max(rcpNum)+1 ,0) from Rcp
 	</select>
 	
-	<!-- <insert id="insert" parameterType="Rcp">
+	<!-- <insert id="insert0" parameterType="Rcp">
 		insert into Rcp values(#{rcpNum},#{title},#{foodName},#{subtitle},#{ingredient},#{cookingTime},#{memNum},sysdate,#{thumbNail},#{hashTag})
 	</insert> -->
 	
@@ -40,18 +40,14 @@
 	</insert>
 	<!-- 11개 -->
 	
-	<insert id="insert2" parameterType="RcpContent">
+	<!-- <insert id="insert2" parameterType="RcpContent">
 	insert into RcpContent values(#{step}, #{fileName}, #{content})
-	</insert>
+	</insert> -->
 
 	<!-- <insert id="insertAll" parameterType="hashMap">
 	insert all into Rcp values(#{rcpNum},#{title},#{foodName},#{subtitle},#{ingredient},#{quantity},#{cookingTime},#{memNum},sysdate,#{thumbNail},#{hashTag}) into RcpContent values(#{step}, #{fileName}, #{content})
 	</insert> 이거 아닌듯...-->
-	
-	
-	
-	
-	
+
 	<!-- <update id="updateArticle" parameterType="int">
 		update board set writer = #{writer} , email= #{email} , subject = 
 			#{subject}, passwd= #{passwd}, content = #{content} where num = #{num}

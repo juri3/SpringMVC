@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+import oracle.net.aso.q;
+
 public class Rcp implements Serializable {
 	// rcp table
 	int rcpNum; // rcpNum int primary key,
@@ -19,6 +21,9 @@ public class Rcp implements Serializable {
 	
 
 	public String getQuantity() {
+		if (quantity==null) 
+			quantity="";
+		System.out.println(quantity);
 		return quantity;
 	}
 

@@ -16,9 +16,8 @@
 		<form method="post" name="writeForm"
 			action="${pageContext.request.contextPath}/rcp/writePro">
 			<input type="hidden" name="rcpNum" value="${rcpNum}">
-			<input type="hidden" name="memNum" value="${memNum}">
-				
-			[카테고리]
+			<%-- <input type="hidden" name="memNum" value="${memNum}"> --%>
+			<input type="hidden" name="memNum" value="1"> [카테고리]
 			<!-- <select name="nation">
     	<option value="korean">한식</option>
     	<option value="chinese">중식</option>
@@ -62,10 +61,34 @@
 
 				<tr>
 					<td width="100" align="center">필요한 재료</td>
-					<td width="330"><input type="text" size="40" maxlength="100"
+					<td width="330"><input type="text" size="20" maxlength="100"
 						name="ingredient"></td>
+							<td width="100" align="center">재료의 양</td>
+				<td width="330"><input type="text" size="20" maxlength="100"
+						name="quantity"></td>
 				</tr>
-
+				
+				<tr>
+					<td width="100" align="center">필요한 재료</td>
+					<td width="330"><input type="text" size="20" maxlength="100"
+						name="ingredient"></td>
+							<td width="100" align="center">재료의 양</td>
+				<td width="330"><input type="text" size="20" maxlength="100"
+						name="quantity"></td>
+				</tr>
+				
+				<tr>
+					<td width="100" align="center">필요한 재료</td>
+					<td width="330"><input type="text" size="20" maxlength="100"
+						name="ingredient"></td>
+							<td width="100" align="center">재료의 양</td>
+				<td width="330"><input type="text" size="20" maxlength="100"
+						name="quantity"></td>
+				</tr>
+				
+				
+				
+				
 				<tr>
 					<td width="70" align="center">한줄 소개</td>
 					<td width="330"><input type="text" size="40" maxlength="30"

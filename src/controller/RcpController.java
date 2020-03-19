@@ -104,7 +104,7 @@ public class RcpController extends ActionAnnotation {
 		try {
 			
 			Rcp article = new Rcp();
-			RcpContent rcpContent = new RcpContent();
+			//RcpContent rcpContent = new RcpContent();
 			
 			article.setRcpNum(Integer.parseInt(request.getParameter("rcpNum")));
 			article.setTitle(request.getParameter("title"));
@@ -113,23 +113,23 @@ public class RcpController extends ActionAnnotation {
 			article.setIngredient(request.getParameter("ingredient"));
 			article.setQuantity(request.getParameter("quantity"));
 			article.setCookingTime(request.getParameter("cookingTime"));
-		
-			article.setMemNum((int)session.getAttribute("memNum"));  //nullPointerException
+			//article.setMemNum((int)session.getAttribute("memNum"));  //nullPointerException
+			
+			article.setMemNum(Integer.parseInt(request.getParameter("memNum")));
 			
 			article.setThumbNail(request.getParameter("thumbNail"));
 			article.setHashTag(request.getParameter("hashTag"));
 			
-			rcpContent.setStep(Integer.parseInt(request.getParameter("step")));
-			rcpContent.setFileName(request.getParameter("fileName"));
-			rcpContent.setContent(request.getParameter("content"));
+			//rcpContent.setStep(Integer.parseInt(request.getParameter("step")));
+			//rcpContent.setFileName(request.getParameter("fileName"));
+			//rcpContent.setContent(request.getParameter("content"));
 			
 			MybatisRcpDaoMysql service = MybatisRcpDaoMysql.getInstance();
 			service.insertArticle(article);
 
 			request.setAttribute("article", article);
-			request.setAttribute("rcpContent", rcpContent);
 			
-			
+			//request.setAttribute("rcpContent", rcpContent);
 			//session.setAttribute("memNum", memNum);
 			
 			

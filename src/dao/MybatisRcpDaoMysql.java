@@ -98,12 +98,12 @@ public class MybatisRcpDaoMysql extends AbstractRepository {
 			String statement = namespace + ".insert_max";
 			rcpNum = sqlSession.selectOne(statement);
 
-			article.setRcpNum(rcpNum); // 필요한가요? -> 필요합니다(rcpNum max값을 여기에 저장)
+			article.setRcpNum(rcpNum); // rcpNum max값을 여기에 저장
 			String statement2 = namespace + ".insert1";
+			
 			sqlSession.insert(statement2, article);
 			sqlSession.commit();
 			
-
 		} finally {
 			sqlSession.close();
 		}
