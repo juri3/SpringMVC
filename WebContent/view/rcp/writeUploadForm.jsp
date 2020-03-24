@@ -18,6 +18,7 @@
 			<input type="hidden" name="rcpNum" value="${rcpNum}">
 			<%-- <input type="hidden" name="memNum" value="${memNum}"> --%>
 			<input type="hidden" name="memNum" value="1"> [카테고리]
+			
 			<!-- <select name="nation">
     	<option value="korean">한식</option>
     	<option value="chinese">중식</option>
