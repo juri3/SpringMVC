@@ -21,16 +21,7 @@
 	function check_jjim(){
 		alert('찜목록에 저장되었습니다.')
 	}
-	/* function checkAll() {
-	    var obj = document.cartlist;
-	    for(var i=0; i<obj.length; i++) {
-	    	if(flag == ){
-				obj[i].checked = true;
-	    	}else{
-	    		obj[i].checked = false;
-	    	}
-		}
-	} */
+	
 	$(function(){ //전체선택 체크박스 클릭 
 		$("#cart_all").click(function(){ //만약 전체 선택 체크박스가 체크된상태일경우 
 			if($("#cart_all").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
@@ -39,6 +30,7 @@
 				$("input[type=checkbox]").prop("checked",false); 
 			} 
 		})
+			// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
 		$(".chk").click(function(){
 		    if($("input[name='cart']:checked").length == ${fn:length(cartlist)}){
 		        $("#cart_all").prop("checked", true);
@@ -48,7 +40,7 @@
 		});
 
 	})
-	// 한개의 체크박스 선택 해제시 전체선택 체크박스도 해제
+
 	
 
 
@@ -61,7 +53,7 @@
 			<thead>
 				<tr>
 					<td><input type="checkbox" id="cart_all" checked ></td>
-					<td>상품명</td> <td>수ㅇ량</td> <td>가격</td> <td>배송비</td>
+					<td>상품명</td> <td>수량</td> <td>가격</td> <td>배송비</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -86,7 +78,7 @@
 		</table>
 		<div>
 			<button type="submit" style="margin-right: 20px;" formaction="${pageContext.request.contextPath}/shopping/cart_delete" onclick="return check_delete()"> 선택항목 삭제 </button>
-			<button type="submit" formaction="${pageContext.request.contextPath}/shopping/cart_jjim" onclick="return check_jjim()" > 선택항목 찜하기 </button>
+			<button type="submit" formaction="${pageContext.request.contextPath}/shopping/regist_jjim" onclick="return check_jjim()" > 선택항목 찜하기 </button>
 		</div>
 		</form>
 	</div>
